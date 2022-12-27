@@ -1,10 +1,35 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'Deploy runner'
+description: 'Deploy a runner to a remote machine'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  host:
+    description: 'The host to deploy to'
     required: true
-    default: '1000'
+  user:
+    description: 'The user to deploy as'
+    required: true
+  password:
+    description: 'The password to use'
+    required: true
+  labels:
+    description: 'The labels to use [comma separated]'
+    required: true
+  amount:
+    description: 'The amount of runners to deploy'
+    required: true
+    default: '1'
+  repo:
+    description: 'The repo to deploy to (defaults to ${{ github.repository }})'
+    required: true
+    default: '${{ github.repository }}'
+  image:
+    description: 'The image to use'
+    required: true
+    default: 'myoung34/github-runner:latest'
+  github_token:
+    description: 'The GitHub token to use (defaults to ${{ github.token }})'
+    required: true
+    default: '${{ github.token }}'
+
 outputs:
   time: # output will be available to future steps
     description: 'The current time after waiting'
